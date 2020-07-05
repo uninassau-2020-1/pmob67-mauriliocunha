@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Consultar Cep
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,68 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">Consultar cep</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+    <br>
+    <form align="left" #f="ngForm" (ngSubmit)="consultarEnd(f)">
+      <div class="form-g">
+      <ion-label class="control-label">Informe um CEP valido:</ion-label><br>
+      <div *ngIf="VCep">
+        <span>{{ msg }}</span>
+      </div>
+      <ion-input type="cep" id="cep" placeholder="54000000" maxlength="8" minlength="8" [ngModel]="form.cep" 
+      name="cep" onkeypress="return event.charCode >= 48 && event.charCode <= 57"></ion-input>
+      <ion-button ion-button icon-only type="submit"color="primary">
+      <ion-icon name="search"></ion-icon>&nbsp;
+        Pesquisar Endereço
+      </ion-button>     
+    </div>
+    </form>
+    <br>
+    
+  <ion-list *ngIf="endereco.cep" class="endereco">
+    <ion-item>
+      <ion-label>CEP:</ion-label>
+      <ion-input>{{ endereco.cep }}</ion-input>
+    </ion-item>
+    <ion-item *ngIf="endereco.logradouro">
+      <ion-label>Rua: </ion-label>
+      <ion-input>{{ endereco.logradouro }}</ion-input>
+    </ion-item>
+    <ion-item *ngIf="endereco.complemento">
+      <ion-label>Complemento: </ion-label>
+      <ion-input>{{ endereco.complemento }}</ion-input>
+    </ion-item>
+    <ion-item *ngIf="endereco.bairro">
+      <ion-label>Bairro: </ion-label>
+      <ion-input>{{ endereco.bairro }}</ion-input>
+    </ion-item>
+    <ion-item *ngIf="endereco.localidade">
+      <ion-label>Cidade: </ion-label>
+      <ion-input>{{ endereco.localidade }}</ion-input>
+    </ion-item>
+    <ion-item *ngIf="endereco.uf">
+      <ion-label>UF: </ion-label>
+      <ion-input>{{ endereco.uf }}</ion-input>
+    </ion-item>
+    <ion-item *ngIf="endereco.unidade">
+      <ion-label>Unidade: </ion-label>
+      <ion-input>{{ endereco.unidade }}</ion-input>
+    </ion-item>
+    <ion-item *ngIf="endereco.ibge">
+      <ion-label>IBGE: </ion-label>
+      <ion-input>{{ endereco.ibge }}</ion-input>
+    </ion-item>
+    <ion-item *ngIf="endereco.gia">
+      <ion-label>GIA: </ion-label>
+      <ion-input>{{ endereco.gia }}</ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="endereco.erro" align="center">
+    <br>
+    <ion-label class="erro">Não foi encontrado o endereço do CEP digitado!</ion-label>
+    <ion-img class="nao" src="assets/icon/nao.png"></ion-img>
+  </ion-list>
 </ion-content>

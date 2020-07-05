@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <form  #form="ngForm">
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col size-md="6" size-lg="5" size-xs="12">
+          <div align="center" #txt>
+            <h1>Login</h1>
+            <h3>Utilize sua Conta do Google</h3>
+          </div>
+          <div id="entrada-dados">
+            <ion-input>Bem vindo(a) {{ user.displayName }} !</ion-input>
+            <br />
+            <ion-button align="center" size="large" expand="block" (click)="entrar()" [routerLink]="['tabs']">
+              Entrar
+            </ion-button>
+          </div>
+          <br />
+          <div id="entrada">
+            <ion-button size="large" expand="block" (click)="googleLogin()" [routerLink]="['tabs']">
+              Google Login
+            </ion-button>
+          </div>
+          <br />
+          <div id="saida">
+            <ion-button size="large" expand="block" (click)="googleLgout()" [routerLink]="['tabs']">
+              Google Lgout
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+  <ion-img src="assets/icon/localizacao.png"></ion-img>
+</ion-content>

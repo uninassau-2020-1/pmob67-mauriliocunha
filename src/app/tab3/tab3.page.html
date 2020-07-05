@@ -1,17 +1,14 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
+    <ion-title>Banco de Dados</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-button color="danger" (click)="removeEnderecos()">Remover o Banco de Dados</ion-button>
+  <div #list id="list" style="height: 40%;">
+    <ion-list *ngFor="let item of enderecos">
+      <ion-input>{{ getEndereco(item) }}</ion-input>
+    </ion-list>
+  </div>
 </ion-content>

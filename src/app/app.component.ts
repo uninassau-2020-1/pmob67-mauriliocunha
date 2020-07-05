@@ -1,3 +1,4 @@
+import { DatabeseService } from './providers/databese.service';
 import { Component } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
@@ -13,7 +14,8 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private db: DatabeseService
   ) {
     this.initializeApp();
   }
@@ -21,7 +23,14 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      this.db.createBD().then(() => {
+        this.splashScreen.hide();
+      }).catch(e => {
+        console.error(e);
+        this.splashScreen.hide();
+      });
+      
     });
   }
+  
 }
